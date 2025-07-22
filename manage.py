@@ -1,4 +1,8 @@
 import project
 
 if __name__ == "__main__":
-    project.project.run(debug = 1)
+    try:
+        project.load_env()
+        project.project.run(debug = 1)
+    except Exception as error:
+        print(error)
