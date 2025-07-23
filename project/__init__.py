@@ -6,4 +6,4 @@ from .login_manager import *
 
 from login_app.app import *
 
-project.register_blueprint(blueprint = login)
+project.register_blueprint(blueprint = login_app)

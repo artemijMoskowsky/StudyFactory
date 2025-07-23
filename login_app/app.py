@@ -1,6 +1,6 @@
 import flask
 
-login = flask.Blueprint(
+login_app = flask.Blueprint(
     name = 'login',
     import_name = 'login_app',
     template_folder = 'templates',
