@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block data %}
+    {% endblock %}
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='img/Logo.svg') }}" id="logo-image" />
+        <div id="right-side">
+            <img src="{{ url_for('static', filename='img/Calendar.svg') }}" id="calendar-image" />
+            <div id="account">
+                <span id="account-name">OLEG</span>
+                <img src="{{ url_for('static', filename='img/Account.svg') }}" id="account-image" />
+            </div>
+        </div>
+    </header>
+    <div class="content-placer">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
