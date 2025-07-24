@@ -1,7 +1,36 @@
 {% extends "base.html" %}
-{% block content %}
-Dies ist die Registrierungsseite
-{% endblock %}
+
 {% block data %}
-<link rel="stylesheet" href="{{ url_for('login.static', filename='reg.css') }}">
+<link rel="stylesheet" href="{{ url_for('login.static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block title %}
+Registration
+{% endblock %}
+    
+{% block content %}
+    <form id="authorization" method="post">
+        <div id="form-name">Регистрация</div>
+        <div class="form-content-placer">
+            <label for="password">Введите ваше имя:</label>
+            <input class="form-input" id="name" placeholder="Ваш пароль..."/>
+        </div>
+        <div class="form-content-placer">
+            <label for="password">Введите вашу фамилию:</label>
+            <input class="form-input" id="surname" placeholder="Ваш пароль..."/>
+        </div>
+        <div class="form-content-placer">
+            <label for="email">Введите вашу электронную почту:</label>
+            <input class="form-input" id="email" placeholder="example@gmail.com"/>
+        </div>
+        <div class="form-content-placer">
+            <label for="password">Введите пароль:</label>
+            <input class="form-input" id="password" placeholder="Ваш пароль..."/>
+        </div>
+        <div class="form-content-placer">
+            <label for="password">Подтвердите пароль:</label>
+            <input class="form-input" id="confirm-password" placeholder="Ваш пароль..."/>
+        </div>
+        <button id="submit-button" type="submit">Подтвердить</button>
+    </form>
 {% endblock %}
