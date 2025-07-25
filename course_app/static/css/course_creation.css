@@ -1,0 +1,5 @@
+.content-placer{
+    width: 100%;
+    height: 100%;
+    padding-top: calc(2.3vw + 2.4vh);
+}

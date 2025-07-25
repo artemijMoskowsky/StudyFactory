@@ -1,20 +1,36 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, Response
+from flask_login import current_user
 from login_app.models import User
 from .models import *
 
-def create_course():
-    course1 = Course(
-        name = "Course1",
-        description = "Test course",
-        color = "125 54 2"
-    )
+def render_course_creation():
+    if request.method == "POST" and current_user.is_authenticated:
+        print(current_user)
+        course = Course(
+            name = request.form.get("name"),
+            description = request.form.get("description"),
+            color = request.form.get("color")
+        )
 
+        DATABASE.session.add(course)
 
-    DATABASE.session.add(course1)
+        course.owners.append(current_user)
 
-    course1.members.extend(User.query.all())
-    course1.owners.append(User.query.first())
+        DATABASE.session.commit()
 
-    DATABASE.session.commit()
+        return redirect("/")
+    
+    return render_template("course_creation.html")
 
-    return redirect('/')
+def get_info_about_course(id: str):
+    course = Course.query.filter(id = id)
+    if course:
+        return Response(course.__dict__, 200)
+    return Response("Error", 404)
+
+def get_all_user_courses():
+    if current_user.is_authenticated:
+        courses = Course.query.filter(Course.owners.any(User.id == current_user.id)).all()
+        data = [dict(course) for course in courses]
+        return data
+    return "None"
