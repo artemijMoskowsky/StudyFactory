@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    background: #323232;
+    background: linear-gradient(119deg, rgba(74, 74, 74, 1) 0%, rgba(50, 50, 50, 1) 100%);
+}
+
+header {
+    width: 100%;
+    height: fit-content;
+    position: fixed;
+    background-color: #323232;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#right-side{
+    display: flex;
+    align-items: center;
+    gap: 4.2vw
+}
+
+#account {
+    display: flex;
+    gap: 0.5vw;
+    align-items: center;
+}
+
+#logo-image {
+    width: 19.1%;
+    height: 95%;
+}
+
+#calendar-image {
+    width: 15%;
+    height: 66.6%;
+}
+
+#account-image {
+    width: 32.5%;
+    height: 93.3%;
+}
+
+#account-name {
+    font-family: "Nunito";
+    color: white;
+    font-size: calc(1.2vw + 1.3vh);
+}
