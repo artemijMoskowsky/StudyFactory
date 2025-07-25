@@ -24,6 +24,7 @@ class Course(DATABASE.Model):
     def __iter__(self):
         yield "name", self.name
         yield "description", self.description
+        yield "owner", f"{self.owners[0].name} {self.owners[0].surname}" if len(self.owners) > 0 else "Not found"
         yield "color", self.color
 # class Task(DATABASE.Model):
 #     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
