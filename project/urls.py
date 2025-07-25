@@ -1,5 +1,5 @@
 from login_app.app import login_app
-from login_app.views import create_people, clean_db
+from login_app.views import create_people, clean_db, render_login, render_reg
 
 from course_app.app import course_app
 from course_app.views import create_course
