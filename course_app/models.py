@@ -1,12 +1,12 @@
 from project.db import DATABASE
 
 owners_and_courses_table = DATABASE.Table("owners_and_courses", DATABASE.metadata, 
-                                          DATABASE.Column("user_id", DATABASE.ForeignKey("user:id")),
-                                          DATABASE.Column("course_id", DATABASE.ForeignKey("course:id")))
+                                          DATABASE.Column("user_id", DATABASE.ForeignKey("user.id")),
+                                          DATABASE.Column("course_id", DATABASE.ForeignKey("course.id")))
 
 members_and_courses_table = DATABASE.Table("members_and_courses", DATABASE.metadata, 
-                                          DATABASE.Column("user_id", DATABASE.ForeignKey("user:id")),
-                                          DATABASE.Column("course_id", DATABASE.ForeignKey("course:id")))
+                                          DATABASE.Column("user_id", DATABASE.ForeignKey("user.id")),
+                                          DATABASE.Column("course_id", DATABASE.ForeignKey("course.id")))
 
 class Course(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)

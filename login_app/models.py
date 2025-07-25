@@ -2,6 +2,7 @@ import flask_login
 from project.db import *
 
 class User(DATABASE.Model, flask_login.UserMixin):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
     name = DATABASE.Column(DATABASE.String)
     last_name = DATABASE.Column(DATABASE.String)
     password = DATABASE.Column(DATABASE.String)

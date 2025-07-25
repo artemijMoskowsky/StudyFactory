@@ -54,6 +54,6 @@ def create_people():
     return flask.redirect('/')
 
 def clean_db():
-    DATABASE.session.delete()
+    DATABASE.session.query(User).delete()
 
     return flask.redirect('/')

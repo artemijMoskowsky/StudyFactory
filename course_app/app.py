@@ -1,7 +1,7 @@
 import flask
 
 course_app = flask.Blueprint(
-    name = "course_app",
+    name = "course",
     import_name = "course_app",
     template_folder = "templates",
     static_folder = "static",
