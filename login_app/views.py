@@ -1,30 +1,39 @@
 from .models import *
 import flask
 
-# def render_register():
-#     if flask.request.method == "POST":
-#         password = flask.request.form["password"]
-#         email = flask.request.form["email"]
-#         user = User(
-#             password = password,
-#             email = email
-#         )
-#         DATABASE.session.add(user)
-#         DATABASE.session.commit()
+def render_reg():
+    if flask.request.method == "POST":
+        name = flask.request.form["name"]
+        surname = flask.request.form["surname"]
+        password = flask.request.form["password"]
+        confirm_password = flask.request.form["confirm-password"]
+        email = flask.request.form["email"]
+        if confirm_password == password:
+            user = User(
+                name = name,
+                surname = surname,
+                password = password,
+                email = email
+            )
+            DATABASE.session.add(user)
+            DATABASE.session.commit()
+            return flask.redirect('/')
+        
+    return flask.render_template("reg.html")
         
 
-#     return flask.redirect('/')
 
-# def authorization():
-#     if flask.request.method == "POST":
-#         password = flask.request.form["password"]
-#         email = flask.request.form["email"]
-#         list_user = User.query.all()
-#         for user in list_user:
-#             if user.password == password and user.email == email:
-#                 flask_login.login_user(user)
-
-#     return flask.redirect('/')
+def render_login():
+    if flask.request.method == "POST":
+        password = flask.request.form["password"]
+        email = flask.request.form["email"]
+        list_user = User.query.all()
+        for user in list_user:
+            if user.password == password and user.email == email:
+                flask_login.login_user(user)
+                return flask.redirect('/')
+            
+    return flask.render_template("login.html")
 
 def create_people():
     user1 = User(
@@ -54,6 +63,6 @@ def create_people():
     return flask.redirect('/')
 
 def clean_db():
-    DATABASE.session.delete()
+    DATABASE.session.query(User).delete()
 
     return flask.redirect('/')
