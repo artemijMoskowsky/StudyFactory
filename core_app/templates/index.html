@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block data %}
+<link rel="stylesheet" href="{{ url_for('core.static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block title %}
+Core
+{% endblock %}
+
+{% block content %}
+    <div id="search-container">
+        <form id="search-form" method="post">
+            <input id="search-input" name="search" placeholder="Поиск..." />
+            <button id="search-button" type="submit">
+                <img id="the-lupa" src="{{ url_for('core.static', filename='img/The_Lupa.svg') }}" />
+            </button>
+        </form>
+    </div>
+    <div id="course-container">
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="course">
+            <div class="course-name">12312313213123</div>
+            <div class="course-account">
+                <img src="{{ url_for('static', filename='img/Account.svg') }}" />
+                <span class="course-creator">123123</span>
+            </div>
+            <div class="course-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, corrupti saepe. Natus iure ipsam sapiente?</div>
+            <div class="course-buttons">
+                <button class="quit-course-button">
+                    <img src="{{ url_for('core.static', filename='img/Quit.svg') }}" />
+                    Выйти
+                </button>
+                <button class="report-course-button">
+                    <img src="{{ url_for('core.static', filename='img/Report.svg') }}" />
+                    Пожаловаться
+                </button>
+            </div>
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    </div>
+{% endblock %}

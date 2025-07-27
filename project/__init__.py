@@ -3,6 +3,7 @@ from .settings import *
 from .db import *
 from .loadenv import *
 from .login_manager import *
+from core_app.app import *
 
 from login_app.app import *
 

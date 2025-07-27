@@ -26,9 +26,15 @@ class Course(DATABASE.Model):
         yield "description", self.description
         yield "owner", f"{self.owners[0].name} {self.owners[0].surname}" if len(self.owners) > 0 else "Not found"
         yield "color", self.color
-# class Task(DATABASE.Model):
-#     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
 
-#     course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"))
 
-#     course = DATABASE.relationship("Course")
+class Task(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
+
+    description = DATABASE.Column(DATABASE.String(100))
+    due_date = DATABASE.Column(DATABASE.String) #Поменять при необходимости
+    attached_files = DATABASE.Column(DATABASE.String) #Поменять при необходимости
+    urls = DATABASE.Column(DATABASE.String) #Поменять при необходимости
+
+    course = DATABASE.relationship("Course")
+    course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"))
