@@ -1,0 +1,168 @@
+.content-placer {
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7%;
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55.8%;
+    width: 20.1%;
+    border-radius: 30px;
+}
+
+#search-input {
+    width: 87.5%;
+    height: 100%;
+    border: none;
+    box-sizing: border-box;
+    background-color: #323232;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    font-family: "Nunito";
+    font-size: 1.4em;
+    padding: 1px 10px;
+    color: white;
+}
+
+#search-input::placeholder {
+    color: white;
+}
+
+#search-input:focus {
+    outline: none;
+}
+
+#search-input:focus::placeholder {
+    color: #FF9720;
+}
+
+#search-form:focus-within {
+    border: 1px solid #FF9720;
+}
+
+#search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12.5%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: #323232;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#the-lupa {
+    height: 100%;
+}
+
+#course-container {
+    width: 100%;
+    height: 93%;
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    padding: 0% 13.5%;
+    flex-wrap: wrap;
+    gap: 3%;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    width: calc(10.8vw + 19.2vh);
+    height: calc(10.8vw + 19.2vh);
+    border-radius: 25px;
+    border: 1px solid black;
+    background: #323232;
+    background: linear-gradient(-46deg, rgba(74, 74, 74, 1) 0%, rgba(50, 50, 50, 1) 100%);
+    gap: 2.5%;
+}
+
+.course-name {
+    width: 100%;
+    height: 33.8%;
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    background-color: blue;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    padding: 5% 6%;
+    font-family: "Nunito";
+    font-size: 24px;
+    color: white;
+}
+
+.course-account {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    box-sizing: border-box;
+    padding: 0% 5%;
+    gap: 2.5%;
+}
+
+.course-creator {
+    font-family: "Nunito";
+    font-size: 24px;
+    color: white;
+}
+
+.course-description {
+    width: 100%;
+    height: 32.5%;
+    font-family: "Nunito";
+    font-size: 24px;
+    color: white;
+    box-sizing: border-box;
+    padding: 0% 5%;
+}
+
+.course-buttons {
+    display: flex;
+    width: 100%;
+    height: 11%;
+}
+
+.quit-course-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    border-bottom-left-radius: 24px;
+    background-color: #BA0000;
+    border: none;
+    font-family: "Nunito";
+    color: white;
+    font-size: 16px;
+    gap: 2.5%;
+}
+
+.report-course-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    border-bottom-right-radius: 24px;
+    background-color: #323232;
+    border: none;
+    font-family: "Nunito";
+    color: white;
+    font-size: 16px;
+    gap: 2.5%;
+}
