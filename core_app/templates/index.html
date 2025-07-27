@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block data %}
-<link rel="stylesheet" href="{{ url_for('core.static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('core.static', filename='css/index.css') }}">
+    <script defer src="{{ url_for('core.static', filename='js/index.js') }}"></script>
 {% endblock %}
 
 {% block title %}
