@@ -57,3 +57,8 @@ appendCourse();
 appendCourse();
 appendCourse();
 appendCourse();
+appendCourse();
+appendCourse();
+appendCourse();
+appendCourse();
+appendCourse();
