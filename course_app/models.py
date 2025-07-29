@@ -22,6 +22,7 @@ class Course(DATABASE.Model):
     members = DATABASE.relationship("User", secondary = members_and_courses_table, backref = "courses")
 
     def __iter__(self):
+        yield "id", self.id
         yield "name", self.name
         yield "description", self.description
         yield "owner", f"{self.owners[0].name} {self.owners[0].surname}" if len(self.owners) > 0 else "Not found"

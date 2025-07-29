@@ -31,7 +31,8 @@ def get_info_about_course(id: str):
 def get_all_user_courses():
     if current_user.is_authenticated:
         courses = Course.query.filter(Course.owners.any(User.id == current_user.id)).all()
+        courses2 = Course.query.filter(Course.members.any(User.id == current_user.id)).all()
+        courses.extend(courses)
         data = [dict(course) for course in courses]
-        print(data)
         return data
     return "None"
