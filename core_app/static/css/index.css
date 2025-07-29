@@ -1,5 +1,6 @@
 .content-placer {
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -7,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: sticky;
     width: 100%;
     height: 7vh;
 }
@@ -77,6 +79,7 @@
     grid-template-columns: repeat(auto-fit, calc(10.8vw + 19.2vh));
     grid-auto-rows: calc(10.8vw + 19.2vh);
     padding: 0% 13.5%;
+    padding-bottom: 4vh;
     row-gap: 4vh;
     column-gap: 2.5vw;
 }
@@ -152,6 +155,7 @@
     color: white;
     font-size: 16px;
     gap: 2.5%;
+    cursor: pointer;
 }
 
 .report-course-button {
@@ -167,4 +171,5 @@
     color: white;
     font-size: 16px;
     gap: 2.5%;
+    cursor: pointer;
 }

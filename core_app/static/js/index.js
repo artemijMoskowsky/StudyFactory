@@ -1,6 +1,24 @@
-let courseContainer = document.querySelector("#course-container");
+const courseContainer = document.querySelector("#course-container");
 
-function appendCourse() {
+function getCourses() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/get_all_user_courses");
+    xhr.onload = function () {
+        if (this.status == 200 && this.readyState == 4) {
+            console.log(this.response);
+            let data = JSON.parse(this.response);
+            console.log(data, typeof data);
+            for (let course of data) {
+                appendCourse(course.color, course.description, course.name, course.owner);
+            }
+        }
+    };
+    xhr.send();
+}
+
+getCourses();
+
+function appendCourse(color, description, name, owner) {
     let course = document.createElement("div");
     course.classList.add("course");
     courseContainer.appendChild(course);
@@ -8,8 +26,8 @@ function appendCourse() {
     let courseName = document.createElement("div");
     courseName.classList.add("course-name");
     // Вставка
-    courseName.style.backgroundColor = "red";
-    courseName.textContent = "Abobium";
+    courseName.style.backgroundColor = color;
+    courseName.textContent = name;
     // Вставка
     course.appendChild(courseName);
 
@@ -20,7 +38,7 @@ function appendCourse() {
     let accountName = document.createElement("span");
     accountName.classList.add("course-creator");
     // Вставка
-    accountName.textContent = "Aboba";
+    accountName.textContent = owner;
     // Вставка
     courseAccount.appendChild(accountImg);
     courseAccount.appendChild(accountName);
@@ -29,7 +47,7 @@ function appendCourse() {
     let courseDescription = document.createElement("div");
     courseDescription.classList.add("course-description");
     // Вставка
-    courseDescription.textContent = "My name is Aboba"
+    courseDescription.textContent = description;
     // Вставка
     course.appendChild(courseDescription);
 
@@ -52,13 +70,3 @@ function appendCourse() {
     courseButtons.appendChild(reportButton);
     course.appendChild(courseButtons);
 }
-
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
-appendCourse();
