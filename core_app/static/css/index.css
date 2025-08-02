@@ -6,6 +6,8 @@
 
 #search-container {
     display: flex;
+    position: relative;
+    z-index: 1;
     justify-content: center;
     align-items: center;
     position: sticky;
@@ -79,7 +81,6 @@
     grid-template-columns: repeat(auto-fit, calc(10.8vw + 19.2vh));
     grid-auto-rows: calc(10.8vw + 19.2vh);
     padding: 0% 13.5%;
-    padding-bottom: 4vh;
     row-gap: 4vh;
     column-gap: 2.5vw;
 }

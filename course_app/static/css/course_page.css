@@ -1,0 +1,172 @@
+.content-placer {
+    margin-top: 1.9vh;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0% 28.125%;
+    gap: 1.4vh;
+}
+
+#course-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 13.9vh;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 15px;
+    font-family: "Nunito";
+    font-size: 32px;
+    color: white;
+}
+
+.message {
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding-top: 0.9vh;
+    padding-bottom: 1.9vh;
+    padding-left: 3.6%;
+    padding-right: 3.6%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9vh;
+    background: #323232;
+    background: linear-gradient(-68deg, rgba(100, 100, 100, 1) 0%, rgba(50, 50, 50, 1) 100%);
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.user-container {
+    width: fit-content; /* 27.4 % */
+    height: fit-content;
+    display: flex;
+    gap: 1.2%;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Nunito";
+    color: white;
+}
+
+.user-name {
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.user-date {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.description {
+    width: 100%;
+    height: fit-content;
+    color: white;
+    font-family: "Nunito";
+    font-size: 20px;
+}
+
+.files {
+    width: 100%;
+    height: fit-content;
+}
+
+iframe {
+    width: calc(9.7vw + 17.2vh);
+    height: calc(6.4vw + 11.5vh);
+    border-radius: 15px;
+}
+
+.comment {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-input {
+    width: 91%;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 0.5vw 0.93vh;
+    color: white;
+    font-family: "Nunito";
+    font-size: 12px;
+}
+
+.send-button {
+    width: calc(1.04vw + 1.85vh);
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1%;
+    cursor: pointer;
+}
+
+.comment-input:focus {
+    outline: 2px solid #FF9720;
+}
+
+.comment-input::placeholder {
+    color: #A7A7A7;
+}
+
+.comment-input:focus::placeholder {
+    color: #FF9720;
+}
+
+.task {
+    width: 100%;
+    height: 6.5vh;
+    box-sizing: border-box;
+    padding: 1.1% 1.7%;
+    display: flex;
+    align-items: center;
+    gap: 1.2%;
+    background: #323232;
+    background: linear-gradient(-68deg, rgba(100, 100, 100, 1) 0%, rgba(50, 50, 50, 1) 100%);
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.image-holder {
+    background-color: black;
+    border-radius: 100px;
+    width: calc(1.25vw + 1.85vh);
+    height: calc(1.25vw + 1.85vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0.9vh 0.5vw;
+}
+
+.task-info {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.task-name {
+    white-space: nowrap;
+    font-family: "Nunito";
+    color: white;
+    font-size: 20px;
+}
+
+.task-date {
+    white-space: nowrap;
+    font-family: "Nunito";
+    color: #E4E4E4;
+    font-size: 16px;
+}
