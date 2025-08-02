@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block data %}
+    <script defer src="{{ url_for('course.static', filename='js/test.js') }}" ></script>
+{% endblock %}
+
+{% block content %}
+    <form id="create-course" method = "post" enctype='multipart/form-data'>
+        <div id="form-name">Введите обязательные данные что бы создать задание</div>
+
+        <div class="form-content-placer">
+            <label class="form-text">Название задания:</label>
+            <input type="text" class="form-input" name="name" placeholder="Название задания...">
+        </div>
+        
+        <div class="form-content-placer">
+            <label class="form-text">Описание задания:</label>
+            <input type="text" class="form-input" name="description" placeholder="Описание задания...">
+        </div>
+
+        <div class="form-content-placer">
+            <label class="form-text">Срок сдачи задания:</label>
+            <input type="text" name="due_date">
+        </div>
+
+        <div class="form-content-placer">
+            <input type="file" multiple name="files">
+        </div>
+
+        <button id="submit-button" type="submit">Подтвердить</button>
+    </form>
+
+{% endblock content %}
