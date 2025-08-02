@@ -17,7 +17,7 @@ def render_reg():
             )
             DATABASE.session.add(user)
             DATABASE.session.commit()
-            return flask.redirect('/')
+            return flask.redirect('/login')
         
     return flask.render_template("reg.html")
         
