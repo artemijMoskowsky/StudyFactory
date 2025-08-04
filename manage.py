@@ -1,4 +1,3 @@
-from flask import session, redirect, request, url_for
 import project
 
 if __name__ == "__main__":
