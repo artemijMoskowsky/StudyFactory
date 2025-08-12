@@ -21,7 +21,7 @@ def render_course_creation():
 
         return redirect("/")
     
-    return render_template("course_page.html") ###############################################################
+    return render_template("course_creation.html") ###############################################################
 
 def get_info_about_course(id: str):
     course = Course.query.filter(id = id)
@@ -80,3 +80,17 @@ def render_task_creation(ID):
         return redirect("/")
     
     return render_template("task_creation.html")
+
+
+def render_task_page():
+    return render_template("task_page.html")
+
+def render_course_page():
+    return render_template("course_page.html")
+
+def render_delete_course():
+    course = Course.query.get(1)
+    DATABASE.session.delete(course)
+    DATABASE.session.commit()
+
+    return redirect("/")
