@@ -6,11 +6,25 @@
 {% endblock %}
 
 {% block content %}
-    <form method = "post">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="description" placeholder="Description">
-        <input type="color" name="color" placeholder="Color">
-        <button type="submit">Send</button>
+    <form id="create-course" method = "post">
+        <div id="form-name">Введите обязательные данные что бы создать свой курс</div>
+
+        <div class="form-content-placer">
+            <label class="form-text">Название:</label>
+            <input type="text" class="form-input" placeholder="Название курса...">
+        </div>
+        
+        <div class="form-content-placer">
+            <label class="form-text">Описание курса:</label>
+            <input type="text" class="form-input" placeholder="Описание курса...">
+        </div>
+
+        <div class="form-content-placer">
+            <label class="form-text">Цвет курса:</label>
+            <input type="color" id="color-input">
+        </div>
+
+        <button id="submit-button" type="submit">Подтвердить</button>
     </form>
 
 {% endblock content %}

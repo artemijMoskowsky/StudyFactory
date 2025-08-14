@@ -32,10 +32,27 @@ class Course(DATABASE.Model):
 class Task(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
 
+    name = DATABASE.Column(DATABASE.String(100))
     description = DATABASE.Column(DATABASE.String(100))
     due_date = DATABASE.Column(DATABASE.String) #Поменять при необходимости
-    attached_files = DATABASE.Column(DATABASE.String) #Поменять при необходимости
-    urls = DATABASE.Column(DATABASE.String) #Поменять при необходимости
 
-    course = DATABASE.relationship("Course")
+    course = DATABASE.relationship("Course", backref = "tasks")
     course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"))
+
+
+class Url(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
+
+    url = DATABASE.Column(DATABASE.String)
+
+    task = DATABASE.relationship("Task", backref = "urls")
+    task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
+
+
+class File(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
+
+    file = DATABASE.Column(DATABASE.String)
+
+    task = DATABASE.relationship("Task", backref = "files")
+    task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
