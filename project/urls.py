@@ -2,7 +2,7 @@ from login_app.app import login_app
 from login_app.views import render_login, render_reg
 
 from course_app.app import course_app
-from course_app.views import render_course_creation, render_course_page, render_task_page, render_task_creation, render_delete_course
+from course_app.views import render_course_creation, render_course_page, render_task_page, render_task_creation, render_delete_course, get_all_user_courses
 
 from core_app.app import core_app
 from core_app.views import render_home
@@ -15,5 +15,7 @@ course_app.add_url_rule("/task_creation/<int:ID>", view_func=render_task_creatio
 
 course_app.add_url_rule("/course_page", view_func=render_course_page, methods=["POST", "GET"])
 course_app.add_url_rule("/task_page", view_func=render_task_page, methods=["POST", "GET"])
+
+course_app.add_url_rule("/get_all_user_courses", view_func=get_all_user_courses, methods=["POST", "GET"])
 
 core_app.add_url_rule("/", view_func=render_home, methods=["POST", "GET"])
