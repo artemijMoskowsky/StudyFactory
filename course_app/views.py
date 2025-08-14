@@ -22,7 +22,7 @@ def render_course_creation():
 
         return redirect("/")
     
-    return render_template("course_creation.html")
+    return render_template("course_creation.html") ###############################################################
 
 def get_info_about_course(id: str):
     course = Course.query.filter(id = id)

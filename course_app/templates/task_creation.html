@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block data %}
-    <script defer src="{{ url_for('course.static', filename='js/test.js') }}" ></script>
+    <link rel="stylesheet" href="{{ url_for('course.static', filename='css/task_creation.css') }}">
+    <script defer src="{{ url_for('course.static', filename='js/task_creation.js') }}" ></script>
+    <meta name="trash-link" content="{{ url_for('course.static', filename='img/Trash.svg') }}">
+{% endblock %}
+
+{% block title %}
+Create task
 {% endblock %}
 
 {% block content %}
-    <form id="create-course" method = "post" enctype='multipart/form-data'>
+    <form id="create-task" method = "post" enctype='multipart/form-data'>
         <div id="form-name">Введите обязательные данные что бы создать задание</div>
 
         <div class="form-content-placer">
@@ -20,11 +26,22 @@
 
         <div class="form-content-placer">
             <label class="form-text">Срок сдачи задания:</label>
-            <input type="text" name="due_date">
+            <input id="form-input-date" type="date" name="due_date">
         </div>
 
         <div class="form-content-placer">
-            <input type="file" multiple name="files">
+            <label class="form-insert-text">Прикрепляемые файлы(необязательно):</label>
+            <input id="input-files" type="file" multiple name="files" />
+        </div>
+
+        <div class="form-content-placer">
+            <label class="form-insert-text">Добавление ссылок(необязательно):</label>
+            <div class="input-link-container">
+                <input class="input-link" placeholder="Введите ссылку на необходимый материал..." name="link" />
+                <button class="add" type="button">
+                    <img class="plus" src="{{ url_for('course.static', filename='img/Plus.svg') }}" />
+                </button>
+            </div>
         </div>
 
         <button id="submit-button" type="submit">Подтвердить</button>

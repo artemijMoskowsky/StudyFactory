@@ -5,6 +5,10 @@
     <script defer src="{{ url_for('course.static', filename='js/test.js') }}" ></script>
 {% endblock %}
 
+{% block title %}
+Create course
+{% endblock %}
+
 {% block content %}
     <form id="create-course" method = "post">
         <div id="form-name">Введите обязательные данные что бы создать свой курс</div>
@@ -21,7 +25,7 @@
 
         <div class="form-content-placer">
             <label class="form-text">Цвет курса:</label>
-            <input type="color" id="color-input" name="color">
+            <input type="color" id="color-input" name="color" value="#ffffff">
         </div>
 
         <button id="submit-button" type="submit">Подтвердить</button>

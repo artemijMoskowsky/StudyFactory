@@ -1,7 +1,6 @@
 .content-placer{
     width: 100%;
     height: 100%;
-    padding-top: 100px;
     align-items: center;
 }
 
@@ -9,32 +8,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    width: 63%;
-    height: fit-content;
+    gap: 3.6%;
+    width: 62.5%;
+    height: 69.4vh;
     background: #323232;
     background: linear-gradient(-62deg, rgba(100, 100, 100, 1) 0%, rgba(50, 50, 50, 1) 100%);
     border-radius: 15px;
-    border: 1px solid black;
+    border: 1px solid rgb(48, 47, 47);
     padding-bottom: 1.2vh;
-
 }
 
 .form-content-placer {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 80%;
-    height: 10vh;
-    gap: 27px;
+    flex-direction: column;
+    width: 70.8%;
+    height: 17.5%;
+    justify-content: space-between;
 }
 
 #form-name {
     font-family: "Nunito";
     color: white;
     font-size: calc(1.4vw + 0.75vh);
-    padding-top: 20px;
+    width: 100%;
+    height: 15.2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #submit-button {
@@ -45,10 +46,8 @@
     color: white;
     font-size: calc(1.2vw + 1.3vh);
     border: none;
-    padding-top: 1.4vh;
-    padding-bottom: 1.4vh;
-    padding-right: 2.1vw;
-    padding-left: 2.1vw;
+    box-sizing: border-box;
+    padding: 1.4vh 2.1vw;
     border-radius: 15px;
     cursor: pointer; 
 }
@@ -61,14 +60,14 @@
 
 .form-input {
     width: 100%;
-    height: 100%;
+    height: 45.8%;
     background-color: black;
     border: 1px solid black;
+    font-family: "Nunito";
+    font-size: 20px;
     color: white;
     border-radius: 15px;
-    padding: 29px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 3.5% 2.39%;
     box-sizing: border-box;
 }
 
@@ -86,11 +85,22 @@
 }
 
 #color-input{
-    display: flex;
     width: 100%;
-    height: 78px;
+    height: 53.4%;
     border-radius: 15px;
-    padding: 0;
+    padding: 0px;
     cursor: pointer;
-    border: 3px solid white;
+    border: 3px solid black;
+    overflow: hidden;
+}
+
+#color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
 }
