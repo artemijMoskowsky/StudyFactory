@@ -24,13 +24,6 @@ def render_reg():
 
 
 def render_login():
-    profile = Profile(
-        image = "test"
-    )
-    print(profile.image)
-    profile.image = profile.image
-    print(profile.image)
-    
     if flask.request.method == "POST":
         password = flask.request.form["password"]
         email = flask.request.form["email"]

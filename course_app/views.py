@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect, Response
 from flask_login import current_user
-from login_app.models import User
+from login_app.models import User, Profile
 from .models import *
 import os, hashlib
+from project.settings import TASK_PATH
 
 def render_course_creation():
     if request.method == "POST" and current_user.is_authenticated:
@@ -41,6 +42,7 @@ def get_all_user_courses():
 
 def render_task_creation(ID):
     if request.method == "POST" and current_user.is_authenticated:
+        print(request.form)
         #<a href="/task_creation/{{ course.id }}"><button>Создать задание</button></a>
         task = Task(
             name = request.form.get("name"),
@@ -51,8 +53,8 @@ def render_task_creation(ID):
         DATABASE.session.add(task)
         DATABASE.session.commit()
 
-        PATH = os.path.abspath(__file__ + "../../static/task_material/")
         for file in request.files.getlist("files"):
+            
             random_salt = os.urandom(16)
             hash_name = hashlib.sha256(random_salt + file.filename.encode())
             
@@ -65,7 +67,7 @@ def render_task_creation(ID):
                 file_name.insert(-1, f" {hash_name.hexdigest()}.")
                 file_name = ''.join(file_name)
 
-            file.save(os.path.join(PATH, file_name))
+            file.save(os.path.join(TASK_PATH, file_name))
 
             file_name = file_name.split(".")
             del file_name[-1]
