@@ -1,4 +1,5 @@
 from project.db import DATABASE
+from datetime import datetime
 
 owners_and_courses_table = DATABASE.Table("owners_and_courses", DATABASE.metadata, 
                                           DATABASE.Column("user_id", DATABASE.ForeignKey("user.id")),
@@ -21,6 +22,9 @@ class Course(DATABASE.Model):
 
     members = DATABASE.relationship("User", secondary = members_and_courses_table, backref = "courses")
 
+    tasks = DATABASE.relationship("Task", backref="course", cascade="all, delete-orphan")
+    messages = DATABASE.relationship("Message_Course", backref="course", cascade="all, delete-orphan")
+
     def __iter__(self):
         yield "id", self.id
         yield "name", self.name
@@ -36,8 +40,13 @@ class Task(DATABASE.Model):
     description = DATABASE.Column(DATABASE.String(100))
     due_date = DATABASE.Column(DATABASE.String) #Поменять при необходимости
 
-    course = DATABASE.relationship("Course", backref = "tasks")
+    time_send = DATABASE.Column(DATABASE.DateTime, default=datetime.utcnow)
+
     course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"))
+
+    urls = DATABASE.relationship("Url", backref="task", cascade="all, delete-orphan")
+    files = DATABASE.relationship("File", backref="task", cascade="all, delete-orphan")
+    messages = DATABASE.relationship("Message_Task", backref="task", cascade="all, delete-orphan")
 
 
 class Url(DATABASE.Model):
@@ -45,7 +54,6 @@ class Url(DATABASE.Model):
 
     url = DATABASE.Column(DATABASE.String)
 
-    task = DATABASE.relationship("Task", backref = "urls")
     task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
 
 
@@ -54,5 +62,29 @@ class File(DATABASE.Model):
 
     file = DATABASE.Column(DATABASE.String)
 
-    task = DATABASE.relationship("Task", backref = "files")
     task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
+
+
+class Message_Course(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
+
+
+    now = datetime.utcnow()
+    time_send = DATABASE.Column(DATABASE.DateTime, default=now.isoformat())
+    message_text = DATABASE.Column(DATABASE.String)
+
+    course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"))
+
+    user_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("user.id"))
+
+
+class Message_Task(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
+
+    message_text = DATABASE.Column(DATABASE.String)
+    now = datetime.utcnow()
+    time_send = DATABASE.Column(DATABASE.DateTime, default=now.isoformat())
+
+    task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
+
+    user_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("user.id"))

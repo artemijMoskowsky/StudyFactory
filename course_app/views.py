@@ -83,3 +83,17 @@ def render_task_creation(ID):
         return redirect("/")
     
     return render_template("task_creation.html")
+
+
+def render_task_page():
+    return render_template("task_page.html")
+
+def render_course_page():
+    return render_template("course_page.html")
+
+def render_delete_course():
+    course = Course.query.get(1)
+    DATABASE.session.delete(course)
+    DATABASE.session.commit()
+
+    return redirect("/")
