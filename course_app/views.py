@@ -72,26 +72,28 @@ def render_task_creation(ID):
 
         PATH = os.path.abspath(__file__ + "../../static/task_material/")
         for file in request.files.getlist("files"):
-            random_salt = os.urandom(16)
-            hash_name = hashlib.sha256(random_salt + file.filename.encode())
-            
-            file_name = file.filename.split(".")
-            print(hash_name)
-            if len(file_name) == 2:
-                file_name.insert(1, f" {hash_name.hexdigest()}.")
-                file_name = ''.join(file_name)
-            else:
-                file_name.insert(-1, f" {hash_name.hexdigest()}.")
-                file_name = ''.join(file_name)
+            print(file.filename)
+            if file.filename != "":
+                random_salt = os.urandom(16)
+                hash_name = hashlib.sha256(random_salt + file.filename.encode())
+                
+                file_name = file.filename.split(".")
+                print(hash_name)
+                if len(file_name) == 2:
+                    file_name.insert(1, f" {hash_name.hexdigest()}.")
+                    file_name = ''.join(file_name)
+                else:
+                    file_name.insert(-1, f" {hash_name.hexdigest()}.")
+                    file_name = ''.join(file_name)
 
-            file.save(os.path.join(PATH, file_name))
+                file.save(os.path.join(PATH, file_name))
 
-            file = File(
-                file = file_name,
-                task_id = task.id
-            )
-            DATABASE.session.add(file)
-            DATABASE.session.commit()
+                file = File(
+                    file = file_name,
+                    task_id = task.id
+                )
+                DATABASE.session.add(file)
+                DATABASE.session.commit()
 
         return redirect("/")
     
@@ -194,8 +196,6 @@ def render_sort():
         for task in sublist:
             list_of_date.append(task.due_date)
 
-    print(list_of_date)
     sorted_list = sort_date(list_of_date)
-    print(sorted_list)
 
     return render_template("course_page.html")
