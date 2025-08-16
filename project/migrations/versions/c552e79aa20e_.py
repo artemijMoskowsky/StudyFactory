@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 97e646b0120c
+Revision ID: c552e79aa20e
 Revises: 
-Create Date: 2025-08-04 13:28:57.675588
+Create Date: 2025-08-14 13:02:15.207333
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '97e646b0120c'
+revision = 'c552e79aa20e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,6 +33,14 @@ def upgrade():
     sa.Column('email', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('hash_course',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('hash', sa.String(), nullable=True),
+    sa.Column('course_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('course_id')
+    )
     op.create_table('members_and_courses',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('course_id', sa.Integer(), nullable=True),
@@ -45,8 +53,8 @@ def upgrade():
     sa.Column('message_text', sa.String(), nullable=True),
     sa.Column('course_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('owners_and_courses',
@@ -62,14 +70,14 @@ def upgrade():
     sa.Column('due_date', sa.String(), nullable=True),
     sa.Column('time_send', sa.DateTime(), nullable=True),
     sa.Column('course_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('file',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('file', sa.String(), nullable=True),
     sa.Column('task_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('message__task',
@@ -78,15 +86,15 @@ def upgrade():
     sa.Column('time_send', sa.DateTime(), nullable=True),
     sa.Column('task_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('url',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('url', sa.String(), nullable=True),
     sa.Column('task_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['task_id'], ['task.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
@@ -101,6 +109,7 @@ def downgrade():
     op.drop_table('owners_and_courses')
     op.drop_table('message__course')
     op.drop_table('members_and_courses')
+    op.drop_table('hash_course')
     op.drop_table('user')
     op.drop_table('course')
     # ### end Alembic commands ###
