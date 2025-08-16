@@ -7,14 +7,17 @@ html {
 body {
     background: #323232;
     background: linear-gradient(119deg, rgba(74, 74, 74, 1) 0%, rgba(50, 50, 50, 1) 100%);
+    background-attachment: fixed;
     min-width: 100%;
     min-height: 100%;
+    height: fit-content;
 }
 
 header {
     width: 100%;
     height: fit-content;
     position: sticky;
+    z-index: 2;
     top: 0px;
     left: 0px;
     background-color: #323232;
@@ -58,7 +61,7 @@ header {
 
 .content-placer {
     width: 100%;
-    height: 94vh;
+    min-height: 94vh;
     display: flex;
     justify-content: center;
 }

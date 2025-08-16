@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, Response
 from flask_login import current_user
 from login_app.models import User
 from .models import *
+import os, hashlib
 
 def render_course_creation():
     if request.method == "POST" and current_user.is_authenticated:
@@ -20,7 +21,7 @@ def render_course_creation():
 
         return redirect("/")
     
-    return render_template("course_creation.html")
+    return render_template("course_creation.html") ###############################################################
 
 def get_info_about_course(id: str):
     course = Course.query.filter(id = id)
@@ -36,3 +37,61 @@ def get_all_user_courses():
         data = [dict(course) for course in courses]
         return data
     return "None"
+
+def render_task_creation(ID):
+    if request.method == "POST" and current_user.is_authenticated:
+        #<a href="/task_creation/{{ course.id }}"><button>Создать задание</button></a>
+        task = Task(
+            name = request.form.get("name"),
+            due_date = request.form.get("due_date"),
+            description = request.form.get("description"),
+            course_id = ID
+        )
+        DATABASE.session.add(task)
+        DATABASE.session.commit()
+
+        PATH = os.path.abspath(__file__ + "../../static/task_material/")
+        for file in request.files.getlist("files"):
+            random_salt = os.urandom(16)
+            hash_name = hashlib.sha256(random_salt + file.filename.encode())
+            
+            file_name = file.filename.split(".")
+            print(hash_name)
+            if len(file_name) == 2:
+                file_name.insert(1, f" {hash_name.hexdigest()}.")
+                file_name = ''.join(file_name)
+            else:
+                file_name.insert(-1, f" {hash_name.hexdigest()}.")
+                file_name = ''.join(file_name)
+
+            file.save(os.path.join(PATH, file_name))
+
+            file_name = file_name.split(".")
+            del file_name[-1]
+            "".join(file_name)
+            file_name = file_name[0]
+
+            file = File(
+                file = file_name,
+                task_id = task.id
+            )
+            DATABASE.session.add(file)
+            DATABASE.session.commit()
+
+        return redirect("/")
+    
+    return render_template("task_creation.html")
+
+
+def render_task_page():
+    return render_template("task_page.html")
+
+def render_course_page():
+    return render_template("course_page.html")
+
+def render_delete_course():
+    course = Course.query.get(1)
+    DATABASE.session.delete(course)
+    DATABASE.session.commit()
+
+    return redirect("/")
