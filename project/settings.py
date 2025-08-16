@@ -11,7 +11,10 @@ project = flask.Flask(
 
 @project.before_request
 def check_auth():
-    if 'static' in request.endpoint:
+    if request.endpoint:
+        if 'static' in request.endpoint:
+            return
+    else:
         return
 
     public_paths = ['/', '/login', '/registration']

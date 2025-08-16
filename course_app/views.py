@@ -55,6 +55,7 @@ def get_all_user_courses():
         courses = Course.query.filter(Course.owners.any(User.id == current_user.id)).all()
         courses2 = Course.query.filter(Course.members.any(User.id == current_user.id)).all()
         courses.extend(courses)
+        courses = set(courses)
         data = [dict(course) for course in courses]
         return data
     return "None"
