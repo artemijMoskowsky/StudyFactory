@@ -97,3 +97,25 @@ class Message_Task(DATABASE.Model):
     task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
 
     user_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("user.id"))
+
+
+#Модели-для-сданных-заданий-от-ученика------------------------------------------------------------
+class Submitted_Assignments(DATABASE.Model):
+    __tablename__ = 'submitted_assignments'
+    id = DATABASE.Column(DATABASE.Integer, primary_key=True, autoincrement = True)
+
+    user_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("user.id"))
+    task_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("task.id"))
+
+    user = DATABASE.relationship("User", backref="submissions_user")
+    
+    files = DATABASE.relationship("Submitted_Assignments_File", backref="submitted_assignments")
+
+
+
+class Submitted_Assignments_File(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key=True)
+
+    file = DATABASE.Column(DATABASE.String)
+
+    submission_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("submitted_assignments.id"))

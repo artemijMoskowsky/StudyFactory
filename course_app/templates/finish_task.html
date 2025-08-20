@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+Finish task
+{% endblock %}
+
+{% block content %}
+    <form id="create-task" method = "post" enctype='multipart/form-data'>
+        
+        <div class="form-content-placer">
+            <label class="form-insert-text">Прикрепляемые файлы(необязательно):</label>
+            <input id="input-files" type="file" multiple name="files" />
+        </div>
+
+        <button id="submit-button" type="submit">Подтвердить</button>
+    </form>
+
+{% endblock content %}

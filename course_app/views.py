@@ -72,13 +72,12 @@ def render_task_creation(ID):
 
         PATH = os.path.abspath(__file__ + "../../static/task_material/")
         for file in request.files.getlist("files"):
-            print(file.filename)
             if file.filename != "":
                 random_salt = os.urandom(16)
                 hash_name = hashlib.sha256(random_salt + file.filename.encode())
                 
                 file_name = file.filename.split(".")
-                print(hash_name)
+
                 if len(file_name) == 2:
                     file_name.insert(1, f" {hash_name.hexdigest()}.")
                     file_name = ''.join(file_name)
@@ -134,7 +133,43 @@ def render_course_connect(ID):
     return redirect("/")
 
 
+def render_finish_task(ID):
+    if request.method == "POST" and current_user.is_authenticated:
+        #<a href="/task_creation/{{ task.id }}"><button>Сдать задание</button></a>
+        f_task = Submitted_Assignments(
+            user_id = current_user.id,
+            task_id = ID
+        )
+        DATABASE.session.add(f_task)
+        DATABASE.session.commit()
 
+        PATH = os.path.abspath(__file__ + "../../static/students_material/")
+        for file in request.files.getlist("files"):
+            if file.filename != "":
+                random_salt = os.urandom(16)
+                hash_name = hashlib.sha256(random_salt + file.filename.encode())
+                
+                file_name = file.filename.split(".")
+
+                if len(file_name) == 2:
+                    file_name.insert(1, f" {hash_name.hexdigest()}.")
+                    file_name = ''.join(file_name)
+                else:
+                    file_name.insert(-1, f" {hash_name.hexdigest()}.")
+                    file_name = ''.join(file_name)
+
+                file.save(os.path.join(PATH, file_name))
+
+                s_file = Submitted_Assignments_File(
+                    file = file_name,
+                    submission_id = f_task.id
+                )
+                DATABASE.session.add(s_file)
+                DATABASE.session.commit()
+
+        return redirect("/")
+    
+    return render_template("finish_task.html")
 
 
 #Сортировка-срока-сдачи-заданий-------------------------------------------------------------------
