@@ -211,10 +211,10 @@ def sort_date(list: list):
     for j in range(len(list)):
         for date in list:
             index = list.index(date)
-            date = parse_date(date)
+            date = parse_date(date["due_date"])
 
             if index != len(list) - 1:
-                date_s = list[index + 1]
+                date_s = list[index + 1]["due_date"]
                 date_s = parse_date(date_s)
                 
                 answer = comparison_date(date, date_s)
@@ -223,8 +223,8 @@ def sort_date(list: list):
 
     return sorted_list_of_date
 
-def render_sort():
-    courses = current_user.courses
+def get_sort():
+    courses = current_user.owned_courses
     list_tasks = []
     for i in range(len(courses)):
         list_tasks.append(courses[i].tasks)
@@ -232,8 +232,8 @@ def render_sort():
     list_of_date = []
     for sublist in list_tasks:
         for task in sublist:
-            list_of_date.append(task.due_date)
+            list_of_date.append(dict(task))
 
     sorted_list = sort_date(list_of_date)
 
-    return render_template("course_page.html")
+    return sorted_list

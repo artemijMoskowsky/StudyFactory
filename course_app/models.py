@@ -58,6 +58,12 @@ class Task(DATABASE.Model):
     files = DATABASE.relationship("File", backref="task", cascade="all, delete-orphan")
     messages = DATABASE.relationship("Message_Task", backref="task", cascade="all, delete-orphan")
 
+    def __iter__(self):
+        yield "id", self.id
+        yield "name", self.name
+        yield "description", self.description
+        yield "time_send", self.time_send
+        yield "due_date", self.due_date
 
 class Url(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
