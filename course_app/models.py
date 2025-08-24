@@ -25,12 +25,22 @@ class Course(DATABASE.Model):
     tasks = DATABASE.relationship("Task", backref="course", cascade="all, delete-orphan")
     messages = DATABASE.relationship("Message_Course", backref="course", cascade="all, delete-orphan")
 
+    hash = DATABASE.relationship("HashCourse", backref="course", cascade="all, delete-orphan")
+
     def __iter__(self):
         yield "id", self.id
         yield "name", self.name
         yield "description", self.description
         yield "owner", f"{self.owners[0].name} {self.owners[0].surname}" if len(self.owners) > 0 else "Not found"
         yield "color", self.color
+
+
+class HashCourse(DATABASE.Model):
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True)
+
+    hash = DATABASE.Column(DATABASE.String)
+
+    course_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey("course.id"), unique=True)
 
 
 class Task(DATABASE.Model):
