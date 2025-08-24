@@ -16,9 +16,11 @@ PROFILE_PATH = os.path.join(PATH, "login_app/static/profile/")
 
 @project.before_request
 def check_auth():
-    if request.endpoint != None:
+    if request.endpoint:
         if 'static' in request.endpoint:
             return
+    else:
+        return
 
     public_paths = ['/', '/login', '/registration']
     if not current_user.is_authenticated and request.path not in public_paths:
