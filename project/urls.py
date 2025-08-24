@@ -2,7 +2,7 @@ from login_app.app import login_app
 from login_app.views import render_login, render_reg
 
 from course_app.app import course_app
-from course_app.views import render_course_creation, render_course_page, render_task_page, render_task_creation, render_delete_course, get_all_user_courses, render_course_connect, render_sort
+from course_app.views import render_course_creation, render_course_page, render_task_page, render_task_creation, render_delete_task, get_all_user_courses, render_course_connect, render_sort
 
 from core_app.app import core_app
 from core_app.views import render_home
