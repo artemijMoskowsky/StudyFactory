@@ -1,11 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block data %}
+    <link rel="stylesheet" href="{{ url_for('course.static', filename='css/task_page.css') }}">
+{% endblock %}
+
+{% block title %}
+Task page
+{% endblock %}
+
+{% block content %}
+    <div class="task-name-container">
+        <div class="image-holder">
+            <img src="{{ url_for('course.static', filename='img/Task.svg') }}" class="task-image" />
+        </div>
+        <span class="task-name">Практика засовывания сосиски в рот</span>
+    </div>
+    <div class="task-container">
+        <div class="content-container">
+            <div class="task-info">
+                <div class="info-placer">
+                    <img src="{{ url_for('static', filename='img/Account.svg') }}" id="account-image" />
+                    <div class="text-placer">
+                        <span class="account-name">Anna Pelmenevna</span>
+                        <span class="publication-date">15 мар. 2024г.</span>
+                    </div>
+                </div>
+                <div class="info-placer" id="date">
+                    <span class="due-date">Срок сдачи: 25 мар. 2024г., 20:00</span>
+                </div>
+            </div>
+            <div class="task-content">
+                <span class="text-content">Не забываем вытирать майонез после завершения практики</span>
+                <div class="media-content">
+                    <iframe class="media" width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="media" width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="media" width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <!-- <iframe class="media" width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                </div>
+            </div>
+            <div class="task-comment">
+                <label for="comment-input" id="comment-label">Вы можете добавить публичный комментарий</label>
+                <div class="comment-input-container">
+                    <input id="comment-input" name="comment-input" placeholder="Добавьте комментарий..." />
+                    <button class="send-button">
+                        <img id="send-image" src="{{ url_for('course.static', filename='img/Send.svg') }}" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="submit-container">
+            <div class="submit-head">
+                <span id="text">Прикрепленные файлы</span>
+                <span id="status">Сдано</span>
+            </div>
+            <label for="input-task" id="input-task-label">
+                <img src="{{ url_for('course.static', filename='img/File.svg') }}" />
+                Прикрепить</label>
+            <input id="input-task" type="file" multiple />
+            <button id="mark-as-complete-button">
+                <img src="{{ url_for('course.static', filename='img/Complete.svg') }}" />
+                Отметить как выполненное</button>
+        </div>
+    </div>
+{% endblock %}
