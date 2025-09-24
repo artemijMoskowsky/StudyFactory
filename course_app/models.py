@@ -46,6 +46,8 @@ class HashCourse(DATABASE.Model):
 class Task(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
 
+    type = DATABASE.Column(DATABASE.String(4), server_default = "task")
+
     name = DATABASE.Column(DATABASE.String(100))
     description = DATABASE.Column(DATABASE.String(100))
     due_date = DATABASE.Column(DATABASE.String) #Поменять при необходимости
@@ -60,6 +62,7 @@ class Task(DATABASE.Model):
 
     def __iter__(self):
         yield "id", self.id
+        yield "type", 'task'
         yield "name", self.name
         yield "description", self.description
         yield "time_send", self.time_send
@@ -84,6 +87,7 @@ class File(DATABASE.Model):
 class Message_Course(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True, autoincrement = True)
 
+    type = DATABASE.Column(DATABASE.String(7), server_default = "message")
 
     now = datetime.utcnow()
     time_send = DATABASE.Column(DATABASE.DateTime, default=now.isoformat())

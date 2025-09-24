@@ -43,4 +43,20 @@
             <span class="task-date">24 мар. 2024г.</span>
         </div>
     </div>
+
+    {% comment %} {% set fruits = [{'type': 'task', 'name': 'test1'}, {'type': 'task', 'name': 'test2'}, {'type': 'task', 'name': 'test3'}, {'type': 'message', 'name': 'aboba'}] %}
+
+    {% for fruit in fruits %}
+        {% if fruit.type == 'message' %}
+        <div class="task">
+            <div class="image-holder">
+                <img src="{{ url_for('course.static', filename='img/Task.svg') }}" />
+            </div>
+            <div class="task-info">
+                <span class="task-name">{{ fruit }}</span>
+                <span class="task-date">24 мар. 2024г.</span>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %} {% endcomment %}
 {% endblock %}
