@@ -45,7 +45,39 @@
     </div>
 
     {% for element in course_list %}
-    {% if element %}
+        {% if element.type == "task" %}
+            <div class="task">
+                <div class="image-holder">
+                    <img src="{{ url_for('course.static', filename='img/Task.svg') }}" />
+                </div>
+                <div class="task-info">
+                    <span class="task-name">{{ element.name }}</span>
+                    <span class="task-date">{{ element.time_send }}</span>
+                </div>
+            </div>
+        {% elif element.type == "message" %}
+            <div class="message">
+                <div class="user-container">
+                    <img src="{{ url_for('static', filename='img/Account.svg') }}" />
+                    <div class="user">
+                        <span class="user-name">Anna Pelmenevna</span>
+                        <span class="message-date">{{ element.time_send }}</span>
+                    </div>
+                </div>
+                <div class="description">{{ element.message_text }}</div>
+                <div class="files">
+                    <iframe width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="390" height="260" src="https://www.youtube.com/embed/JrKOHNRnRMg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <form class="comment" method="post">
+                    <input class="comment-input" name="comment" placeholder="Добавьте комментарий..." />
+                    <button type="submit" class="send-button">
+                        <img src="{{ url_for('course.static', filename='img/Send.svg') }}" />
+                    </button>
+                </form>
+            </div>
+        {% endif %}
     {% endfor %}
 
 {% endblock %}

@@ -107,11 +107,12 @@ def render_task_page():
 
 
 def render_course_page():
-    tasks = Task.query.filter(course_id = 1)
-    message_course = Message_Course.query.filter(course_id = 1)
+    tasks = Task.query.filter_by(course_id = 1).all()
+    message_course = Message_Course.query.filter_by(course_id = 1).all()
     course_list = []
     course_list.extend(tasks)
     course_list.extend(message_course)
+
     return render_template("course_page.html", course_list = course_list)
 
 
