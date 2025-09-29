@@ -1,9 +1,8 @@
 .content-placer {
-    margin-top: 1.9vh;
     box-sizing: border-box;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0% 28.125%;
+    padding: 1.8vh 28.125%;
     gap: 1.4vh;
 }
 

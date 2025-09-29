@@ -86,7 +86,12 @@ def render_task_page():
     return render_template("task_page.html")
 
 def render_course_page():
-    return render_template("course_page.html")
+    tasks = Task.query.filter(course_id = 1)
+    message_course = Message_Course.query.filter(course_id = 1)
+    course_list = []
+    course_list.extend(tasks)
+    course_list.extend(message_course)
+    return render_template("course_page.html", course_list = course_list)
 
 def render_delete_course():
     course = Course.query.get(1)
