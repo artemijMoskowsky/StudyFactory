@@ -190,3 +190,52 @@
 .input-link:focus::placeholder {
     color: #FF9720;
 }
+
+#file-buffer{
+    position: absolute;
+    visibility: hidden;
+    top: -10vh;
+}
+
+#file-placer{
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, calc(7.7vw + 7.7vh));
+    grid-auto-rows: calc(2.2vw + 2.2vh);
+}
+
+.file-img{
+    width: calc(1.5vw + 1.5vh);
+    height: calc(1.5vw + 1.5vh);
+}
+
+.file-base{
+    place-self: center;
+    max-width: calc(calc(6.8vw + 6.8vh));
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    font-family: "Nunito";
+    border: 2px solid white;
+    padding: 0.5vh 0.5vw;
+    border-radius: calc(0.5vw + 0.5vh);
+    gap: 0.2vw;
+}
+
+.file-name{
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+    text-wrap: nowrap;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.file-size{
+    width: fit-content;
+    text-overflow: clip;
+    text-wrap: nowrap;
+}

@@ -3,7 +3,9 @@
 {% block data %}
     <link rel="stylesheet" href="{{ url_for('course.static', filename='css/task_creation.css') }}">
     <script defer src="{{ url_for('course.static', filename='js/task_creation.js') }}" ></script>
+    <script defer src="{{ url_for('course.static', filename='js/file_buffer_script.js') }}"></script>
     <meta name="trash-link" content="{{ url_for('course.static', filename='img/Trash.svg') }}">
+    <meta name="file-link" content="{{ url_for('course.static', filename='img/File.svg') }}">
 {% endblock %}
 
 {% block title %}
@@ -26,14 +28,19 @@ Create task
 
         <div class="form-content-placer">
             <label class="form-text">Срок сдачи задания:</label>
-            <input id="form-input-date" type="date" name="due_date">
+            <input id="form-input-date" type="datetime-local" name="due_date">
         </div>
 
         <div class="form-content-placer">
             <label class="form-insert-text">Прикрепляемые файлы(необязательно):</label>
-            <input id="input-files" type="file" multiple name="files" />
+            <input id="input-files" type="file" multiple />
+            <input id="file-buffer" type="file" multiple name="files">
         </div>
 
+        <div id="file-placer">
+
+        </div>
+        
         <div class="form-content-placer">
             <label class="form-insert-text">Добавление ссылок(необязательно):</label>
             <div class="input-link-container">

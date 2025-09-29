@@ -9,11 +9,20 @@ project = flask.Flask(
     static_url_path= '/static_base'
 )
 
+
+PATH = os.path.abspath(__file__ + "/../..")
+TASK_PATH = os.path.join(PATH, "course_app/static/task_material/")
+PROFILE_PATH = os.path.join(PATH, "login_app/static/profile/")
+
 @project.before_request
 def check_auth():
-    if 'static' in request.endpoint:
+    if request.endpoint:
+        if 'static' in request.endpoint:
+            return
+    else:
         return
 
     public_paths = ['/', '/login', '/registration']
     if not current_user.is_authenticated and request.path not in public_paths:
         return redirect(url_for('core.render_home'))
+
