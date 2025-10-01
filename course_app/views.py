@@ -102,12 +102,26 @@ def render_task_creation(ID):
     return render_template("task_creation.html")
 
 
-def render_task_page():
-    return render_template("task_page.html")
+def render_task_page(ID):
+    task = Task.query.get(ID)
+    return render_template("task_page.html", task)
 
 
-def render_course_page():
-    return render_template("course_page.html")
+def render_course_page(ID):
+    all_tasks = Task.query.filter_by(course_id = ID).all()
+    all_messages = Message_Course.query.filter_by(course_id = ID).all()
+
+    all_activity = []
+    if all_tasks != None:
+        all_tasks = sort_date_time_send(all_tasks)
+
+    if all_messages != None:
+        all_messages = sort_date_time_send(all_messages)
+
+    all_activity.extend(all_tasks)
+    all_activity.extend(all_messages)
+
+    return render_template("course_page.html", Id = ID, all_activity = all_activity)
 
 
 def render_delete_task():
@@ -176,6 +190,7 @@ def render_finish_task(ID):
 
 
 #Сортировка-срока-сдачи-заданий-------------------------------------------------------------------
+#Сортировка по сроку сдачи-------------------
 def swap(list: list, i: int, j: int):
     list[i], list[j] = list[j], list[i]
     return list
@@ -223,7 +238,7 @@ def sort_date(list: list):
 
     return sorted_list_of_date
 
-def get_sort():
+def get_sort_due_time():
     courses = current_user.owned_courses
     list_tasks = []
     for i in range(len(courses)):
@@ -237,3 +252,46 @@ def get_sort():
     sorted_list = sort_date(list_of_date)
 
     return sorted_list
+
+#Сортировка-по-сроку-отправки-------------------
+def parse_date_time_send(date_str: str):
+    date_str = date_str.split("-")
+
+    time = date_str[2].split(" ")
+    date_str[2] = time[0]
+    date_str.append(time[1])
+
+    time_d = date_str[3].split(":")
+    date_str[3] = time_d[0]
+    date_str.append(time_d[1])
+    date_str.append(time_d[2])
+
+    time_d = date_str[5].split(".")
+    date_str[5] = time_d[0]
+    
+    return list(map(int, date_str))
+
+def comparison_date_time_send(date_f: list, date_s: list):
+    for i in range(5):
+        if date_f[i] > date_s[i]:
+            return True
+        
+    return False #одинаковое
+
+
+def sort_date_time_send(list: list):
+    sorted_list_of_date = list
+    for j in range(len(list)):
+        for date in list:
+            index = list.index(date)
+            date = parse_date_time_send(str(date.time_send))
+
+            if index != len(list) - 1:
+                date_s = list[index + 1].time_send
+                date_s = parse_date_time_send(str(date_s))
+                
+                answer = comparison_date_time_send(date, date_s)
+                if answer:
+                    sorted_list_of_date = swap(sorted_list_of_date, index, index + 1)
+
+    return sorted_list_of_date

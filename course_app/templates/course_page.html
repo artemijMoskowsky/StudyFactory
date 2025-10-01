@@ -44,7 +44,8 @@
         </div>
     </div>
 
-    {% comment %} {% set fruits = [{'type': 'task', 'name': 'test1'}, {'type': 'task', 'name': 'test2'}, {'type': 'task', 'name': 'test3'}, {'type': 'message', 'name': 'aboba'}] %}
+    {% block comment %} 
+    {% set fruits = [{'type': 'task', 'name': 'test1'}, {'type': 'task', 'name': 'test2'}, {'type': 'task', 'name': 'test3'}, {'type': 'message', 'name': 'aboba'}] %}
 
     {% for fruit in fruits %}
         {% if fruit.type == 'message' %}
@@ -58,5 +59,6 @@
             </div>
         </div>
         {% endif %}
-    {% endfor %} {% endcomment %}
+    {% endfor %} 
+    {% endblock %}
 {% endblock %}
